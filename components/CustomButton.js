@@ -19,7 +19,7 @@ const ButtonContainer = styled.TouchableOpacity`
     ${props =>
         props.maxHeight
             ? `max-height: ${props.maxHeight};`
-            : 'max-height: 75px; padding: 10px 20px;'};
+            : 'padding: 10px 20px;'};
 
     ${props => (props.minHeight ? `min-height: ${props.minHeight}};` : '')};
 `;

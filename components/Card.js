@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { CardTextbox, StandardTextbox } from './CustomTextbox.js';
 import CustomButton from './CustomButton.js';
-import { SMALL_HORIZONTAL_MARGIN_BUTTON } from './Constants.js';
+import { BIG_MIN_HEIGHT_BUTTON } from './Constants.js';
 import styled from 'styled-components/native';
-import { BigScrollStyledView, BIG_MIN_HEIGHT_BUTTON } from './StyledView.js';
+import { BigScrollStyledView } from './StyledView.js';
 
 const CardView = styled.View`
     display: flex;
@@ -57,12 +57,14 @@ const Card = ({
                             color={color}
                             onPress={() => setModalVisible(false)}
                             horizontalMargin={SMALL_HORIZONTAL_MARGIN_BUTTON}
+                            minHeight={BIG_MIN_HEIGHT_BUTTON}
                         ></CustomButton>
                         <CustomButton
                             text="follow up"
                             color={color}
                             onPress={() => setOptions(followUp)}
                             horizontalMargin={SMALL_HORIZONTAL_MARGIN_BUTTON}
+                            minHeight={BIG_MIN_HEIGHT_BUTTON}
                         ></CustomButton>
                     </TwoButtonContainer>
                 ) : (

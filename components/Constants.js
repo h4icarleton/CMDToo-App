@@ -10,3 +10,4 @@ export const CATEGORY = {
 export const SMALL_HORIZONTAL_MARGIN_BUTTON = '5px';
 export const BIG_MIN_HEIGHT_BUTTON = '75px';
 export const VBIG_MIN_HEIGHT_BUTTON = '150px';
+export const ONELINE_MAX_HEIGHT_PLAY_BUTTON = '75px';
