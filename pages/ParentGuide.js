@@ -3,6 +3,7 @@ import qs from '../components/questions.json';
 import CustomButton from '../components/CustomButton.js';
 import styled from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
+import { BIG_MIN_HEIGHT_BUTTON } from '../components/Constants';
 import {
     ScrollStyledView,
     ParentGuideContainer,
@@ -68,7 +69,7 @@ const TextContainerParentGuide = styled.View`
 `;
 
 const InformationContainer = styled.View`
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 `;
 
 const SearchBarComponent = ({ navigation }) => {
@@ -76,8 +77,8 @@ const SearchBarComponent = ({ navigation }) => {
     useEffect(() => {
         setOutput(find(input));
     }, [input]);
-    const [past, setPast] = useState({ });
-    const [pastCat, setPastCat] = useState({ });
+    const [past, setPast] = useState({});
+    const [pastCat, setPastCat] = useState({});
     const [output, setOutput] = useState('');
 
     const find = str_to_match => {
@@ -93,7 +94,7 @@ const SearchBarComponent = ({ navigation }) => {
         }
         if (options === undefined || cat_options === undefined) {
             options = qs;
-            cat_options = { };
+            cat_options = {};
             qs.map(q => {
                 if (q.Category != '') {
                     cat_options[q.Category] = {
@@ -104,11 +105,11 @@ const SearchBarComponent = ({ navigation }) => {
                 }
                 q.Group.split('|').map(
                     g =>
-                    (cat_options[g] = {
-                        text: g,
-                        isGroup: true,
-                        isQ: false
-                    })
+                        (cat_options[g] = {
+                            text: g,
+                            isGroup: true,
+                            isQ: false
+                        })
                 );
             });
             cat_options = Object.values(cat_options);
@@ -160,7 +161,12 @@ const SearchBarComponent = ({ navigation }) => {
             <StatusBar style="light" />
             <SearchBar
                 placeholder="Search by specific question..."
-                style={{ shadowColor: 'black', shadowOffset: { width: 0, height: 4 }, shadowRadius: 3, shadowOpacity: 0.25 }}
+                style={{
+                    shadowColor: 'black',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowRadius: 3,
+                    shadowOpacity: 0.25
+                }}
                 onChangeText={setInput}
                 onEndEditing={() => setOutput('')}
                 returnKeyType="search"
@@ -169,12 +175,12 @@ const SearchBarComponent = ({ navigation }) => {
                     if (output.length > 0) {
                         output[0].isQ
                             ? navigation.navigate('Parent Guide Information', {
-                                question: output[0].question
-                            })
+                                  question: output[0].question
+                              })
                             : navigation.navigate('Parent Guide by Category', {
-                                filter: output[0].text,
-                                isGroup: output[0].isGroup
-                            });
+                                  filter: output[0].text,
+                                  isGroup: output[0].isGroup
+                              });
                     }
                 }}
                 clearButtonMode="while-editing"
@@ -189,18 +195,18 @@ const SearchBarComponent = ({ navigation }) => {
                         onPress={() =>
                             item.isQ
                                 ? navigation.navigate(
-                                    'Parent Guide Information',
-                                    {
-                                        question: item.question
-                                    }
-                                )
+                                      'Parent Guide Information',
+                                      {
+                                          question: item.question
+                                      }
+                                  )
                                 : navigation.navigate(
-                                    'Parent Guide by Category',
-                                    {
-                                        filter: item.text,
-                                        isGroup: item.isGroup
-                                    }
-                                )
+                                      'Parent Guide by Category',
+                                      {
+                                          filter: item.text,
+                                          isGroup: item.isGroup
+                                      }
+                                  )
                         }
                     >
                         <MatchBorder>
@@ -219,9 +225,13 @@ const CategoryButtonDisplay = (buttonObjects, isGroup) => {
         list.push(
             <CustomButton
                 key={buttonObject.text}
-                text={isGroup ? buttonObject.text : buttonObject.text.toUpperCase()}
+                text={
+                    isGroup
+                        ? buttonObject.text
+                        : buttonObject.text.toUpperCase()
+                }
                 color={buttonObject.color}
-                isCategory={isGroup ? 1 : 2}
+                minHeight={BIG_MIN_HEIGHT_BUTTON}
                 onPress={() =>
                     buttonObject.navigation.navigate(
                         buttonObject.onPressDestination,
@@ -246,6 +256,7 @@ const QuestionButtonDisplay = buttonObjects => {
                 text={buttonObject.text}
                 color={buttonObject.color}
                 isCategoryQuestion={true}
+                minHeight={BIG_MIN_HEIGHT_BUTTON}
                 onPress={() =>
                     buttonObject.navigation.navigate(
                         buttonObject.onPressDestination,
@@ -268,8 +279,8 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
     const questions = qs.filter(data => {
         return isGroup
             ? data.Group.toLowerCase()
-                .split('|')
-                .includes(cat_filter.toLowerCase())
+                  .split('|')
+                  .includes(cat_filter.toLowerCase())
             : data.Category.toLowerCase() === cat_filter.toLowerCase();
     });
 
@@ -287,7 +298,10 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
         <ParentGuideContainer>
             <GeometryBackground />
             {SearchBarComponent({ navigation })}
-            <ViewBy editable={false} multiline={true}> {headingText} </ViewBy>
+            <ViewBy editable={false} multiline={true}>
+                {' '}
+                {headingText}{' '}
+            </ViewBy>
             <ScrollStyledView
                 directionalLockEnabled={true}
                 contentContainerStyle={{ maxWidth: '99.9%' }}
@@ -349,7 +363,10 @@ export const ParentGuide = ({ navigation }) => {
             <ViewHeading> View By: </ViewHeading>
             <StyledPress onPress={() => setIsGroup(!isGroup)}>
                 <View pointerEvents="none">
-                    <ViewBy editable={false} style={{ textAlign: isGroup ? 'left' : 'center' }}>
+                    <ViewBy
+                        editable={false}
+                        style={{ textAlign: isGroup ? 'left' : 'center' }}
+                    >
                         {isGroup ? 'Grouped Interpretations' : 'Category'}
                     </ViewBy>
                 </View>
@@ -400,7 +417,7 @@ export const ParentGuideInformation = ({ route, navigation }) => {
                     <CustomButton
                         text="done"
                         color={color}
-                        isBig={true}
+                        minHeight={BIG_MIN_HEIGHT_BUTTON}
                         onPress={() => navigation.pop()}
                     />
                 </InformationContainer>

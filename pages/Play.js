@@ -1,15 +1,16 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
+import { BIG_MIN_HEIGHT_BUTTON } from '../components/Constants.js';
 import CustomButton from '../components/CustomButton.js';
 import Card from '../components/Card.js';
 import qs from '../components/questions.json';
 import { Modal, Linking } from 'react-native';
 import {
     StyledView,
-    AppName,
     AppDesc,
-    CategoryHeader
+    CategoryHeader,
+    AppLogo
 } from '../components/StyledView';
 
 export const Play = ({ navigation }) => {
@@ -39,6 +40,7 @@ export const Play = ({ navigation }) => {
                     key={category}
                     text={category}
                     color={category}
+                    displayIcon={true}
                     disabled={lengthOfCardLeft === 0}
                     warningText={
                         lengthOfCardLeft <= 3
@@ -79,7 +81,7 @@ export const Play = ({ navigation }) => {
         } else {
             setDisplay(
                 <>
-                    <AppName> YOU FINISHED! </AppName>
+                    <AppLogo> YOU FINISHED! </AppLogo>
                     <AppDesc>
                         {' '}
                         What is something new you learned today?{' '}

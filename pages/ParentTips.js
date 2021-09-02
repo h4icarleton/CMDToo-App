@@ -7,6 +7,10 @@ import {
     ScenerioContainer
 } from '../components/StyledView';
 import tips from '../components/parent-tips.json';
+import {
+    BIG_MIN_HEIGHT_BUTTON,
+    VBIG_MIN_HEIGHT_BUTTON
+} from '../components/Constants';
 import CustomButton from '../components/CustomButton.js';
 import {
     ParentTipsTextbox,
@@ -23,7 +27,7 @@ const GetScenerioButtons = navigation => {
                 key={count++}
                 text={tip.scenario}
                 color="CMDOrange"
-                isVeryBig={true}
+                minHeight={VBIG_MIN_HEIGHT_BUTTON}
                 onPress={() =>
                     navigation.navigate('Parent Tips Information', { tip })
                 }
@@ -73,7 +77,7 @@ export const ScenerioTips = ({ route, navigation }) => {
                         <CustomButton
                             text="read more"
                             color={color}
-                            isBig={true}
+                            minHeight={BIG_MIN_HEIGHT_BUTTON}
                             onPress={() => Linking.openURL(link)}
                         />
                     ) : (

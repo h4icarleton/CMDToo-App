@@ -30,6 +30,8 @@ export const StyledHomeText = styled.Text`
 
 export const ScrollStyledView = styled.ScrollView`
     margin-top: 3px;
+    margin-bottom: 15px;
+    width: 100%;
 `;
 
 export const BigScrollStyledView = styled.ScrollView`

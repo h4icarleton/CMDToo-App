@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import CustomButton from '../components/CustomButton.js';
 import { CustomText } from '../components/CustomText.js';
+import { BIG_MIN_HEIGHT_BUTTON } from '../components/Constants.js';
 import {
     StyledView,
     ScrollStyledView,
@@ -43,7 +44,7 @@ export const HowToPlay = ({ navigation }) => {
                         text="play"
                         color="CMDGreen"
                         onPress={() => navigation.navigate('play')}
-                        isBig={true}
+                        minHeight={BIG_MIN_HEIGHT_BUTTON}
                     />
                     <StatusBar style="auto" />
                 </HowToPlayContainer>

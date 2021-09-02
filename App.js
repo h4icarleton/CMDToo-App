@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import CustomButton from './components/CustomButton.js';
 import HomeButton from './components/HomeButton.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
@@ -16,8 +15,6 @@ import {
 import { ParentTips, ScenerioTips } from './pages/ParentTips.js';
 import {
     StyledView,
-    AppLogo,
-    AppDesc,
     StyledHomeButtonView,
     StyledHomeText
 } from './components/StyledView';

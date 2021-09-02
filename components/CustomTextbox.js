@@ -26,10 +26,14 @@ export const StandardText = styled.Text`
     font-family: Avenir;
     font-style: normal;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 23px;
     line-height: 41px;
     text-align: center;
-    color: ${props => props.color === 'my bright future' ? props.theme.colors['CMDPink'] : 'white'};
+    font-weight: 900;
+    color: ${props =>
+        props.color === 'my bright future'
+            ? props.theme.colors['CMDPink']
+            : 'white'};
 `;
 
 export const CategoryText = styled(StandardText)`
@@ -152,7 +156,9 @@ export const SmallerStandardTextbox = ({ text, color }) => (
 
 export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
-        <StandardText color={color} key={index}>{text.toString().toLowerCase()}</StandardText>
+        <StandardText color={color} key={index}>
+            {text.toString().toLowerCase()}
+        </StandardText>
     ));
 
     return (
