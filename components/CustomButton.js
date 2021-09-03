@@ -25,7 +25,10 @@ const ButtonContainer = styled.TouchableOpacity`
 `;
 
 const WarningText = styled.Text`
-    color: #ffffff;
+    color: ${props =>
+        props.categoryName === CATEGORY.BRIGHTFUTURE
+            ? props.theme.colors['CMDPink']
+            : 'white'};
     position: absolute;
     left: 5%;
     bottom: 3%;
@@ -41,7 +44,7 @@ const Icon = styled.Image`
     bottom: 3%;
 `;
 
-const pickIconToDisplay = categoryName => {
+const pickIconToDisplay = (categoryName, isDisable) => {
     switch (categoryName) {
         case CATEGORY.FAVORITES:
             return (
@@ -79,11 +82,19 @@ const pickIconToDisplay = categoryName => {
             );
 
         case CATEGORY.BRIGHTFUTURE:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-brightfuture_filled.png')}
-                />
-            );
+            if (isDisable) {
+                return (
+                    <Icon
+                        source={require('../assets/genconnect_icon-brightfuture_filled.png')}
+                    />
+                );
+            } else {
+                return (
+                    <Icon
+                        source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
+                    />
+                );
+            }
 
         default:
             return null;
@@ -112,8 +123,10 @@ const CustomButton = ({
         >
             <StandardText color={color}>{text}</StandardText>
 
-            {warningText && <WarningText>{warningText}</WarningText>}
-            {displayIcon && pickIconToDisplay(color)}
+            {warningText && (
+                <WarningText categoryName={color}>{warningText}</WarningText>
+            )}
+            {displayIcon && pickIconToDisplay(color, others.disabled)}
         </ButtonContainer>
     );
 };
