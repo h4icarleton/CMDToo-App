@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { StandardText } from './CustomTextbox.js';
 import { CATEGORY } from './Constants.js';
+import { pickIconToDisplay } from './Icon.js';
 
 const ButtonContainer = styled.TouchableOpacity`
     align-self: stretch;
@@ -36,71 +37,6 @@ const WarningText = styled.Text`
     font-weight: 600;
 `;
 
-const Icon = styled.Image`
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    right: 3%;
-    bottom: 3%;
-`;
-
-const pickIconToDisplay = (categoryName, isDisable) => {
-    switch (categoryName) {
-        case CATEGORY.FAVORITES:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-favorites_filled.png')}
-                />
-            );
-
-        case CATEGORY.DANCECHALLENGE:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-allaboutme_filled.png')}
-                />
-            );
-
-        case CATEGORY.ALLABOUTME:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-allaboutme_filled.png')}
-                />
-            );
-
-        case CATEGORY.INNERME:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-innerme_filled.png')}
-                />
-            );
-
-        case CATEGORY.WHATWOULDYOURDO:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-whatwouldyoudo_filled.png')}
-                />
-            );
-
-        case CATEGORY.BRIGHTFUTURE:
-            if (isDisable) {
-                return (
-                    <Icon
-                        source={require('../assets/genconnect_icon-brightfuture_filled.png')}
-                    />
-                );
-            } else {
-                return (
-                    <Icon
-                        source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
-                    />
-                );
-            }
-
-        default:
-            return null;
-    }
-};
-
 const CustomButton = ({
     text,
     color,
@@ -126,7 +62,7 @@ const CustomButton = ({
             {warningText && (
                 <WarningText categoryName={color}>{warningText}</WarningText>
             )}
-            {displayIcon && pickIconToDisplay(color, others.disabled)}
+            {displayIcon && pickIconToDisplay(color, others.disabled, true)}
         </ButtonContainer>
     );
 };

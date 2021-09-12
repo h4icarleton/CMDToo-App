@@ -12,8 +12,8 @@ import {
 } from '../components/StyledView';
 import {
     StandardTextbox,
-    InterpretationTextBox,
-    SmallerStandardTextbox
+    QuestionTextbox,
+    InterpretationTextbox
 } from '../components/CustomTextbox';
 import { View } from 'react-native';
 import GeometryBackground from '../components/GeometryBackground';
@@ -400,20 +400,20 @@ export const ParentGuideInformation = ({ route, navigation }) => {
             >
                 <InformationContainer>
                     <StandardTextbox
-                        text={category.toLowerCase()}
+                        text={category.toUpperCase()}
                         color={color}
                     ></StandardTextbox>
                     <TextContainerParentGuide>
-                        <SmallerStandardTextbox
-                            text={question.toLowerCase()}
+                        <QuestionTextbox
+                            text={question.toUpperCase()}
                             color={color}
-                        ></SmallerStandardTextbox>
+                        ></QuestionTextbox>
                     </TextContainerParentGuide>
-                    <InterpretationTextBox
+                    <InterpretationTextbox
                         interpretationText={interpretation}
                         groupText={group}
                         color={color}
-                    ></InterpretationTextBox>
+                    ></InterpretationTextbox>
                     <CustomButton
                         text="done"
                         color={color}
