@@ -25,11 +25,12 @@ const SmallerTextboxContainer = styled.View`
 export const StandardText = styled.Text`
     font-family: Avenir;
     font-style: normal;
-    font-weight: 500;
-    font-size: 23px;
-    line-height: 41px;
-    text-align: center;
     font-weight: 900;
+    font-size: 23px;
+    line-height: 32px;
+    text-align: center;
+    flex-shrink: 1;
+    width: ${props => `${props.fixedTextWidth}`};
     color: ${props =>
         props.color === 'my bright future'
             ? props.theme.colors['CMDPink']

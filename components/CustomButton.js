@@ -44,6 +44,10 @@ const Icon = styled.Image`
     bottom: 3%;
 `;
 
+const StandardTextContainer = styled.View`
+    align-items: center;
+`;
+
 const pickIconToDisplay = (categoryName, isDisable) => {
     switch (categoryName) {
         case CATEGORY.FAVORITES:
@@ -110,6 +114,8 @@ const CustomButton = ({
     onPress,
     displayIcon,
     horizontalMargin,
+    isAllCap,
+    fixedTextWidth,
     ...others
 }) => {
     return (
@@ -121,7 +127,11 @@ const CustomButton = ({
             minHeight={minHeight}
             horizontalMargin={horizontalMargin}
         >
-            <StandardText color={color}>{text}</StandardText>
+            <StandardTextContainer>
+                <StandardText color={color} fixedTextWidth={fixedTextWidth}>
+                    {isAllCap ? text.toUpperCase() : text}
+                </StandardText>
+            </StandardTextContainer>
 
             {warningText && (
                 <WarningText categoryName={color}>{warningText}</WarningText>

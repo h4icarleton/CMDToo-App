@@ -3,7 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import {
     BIG_MIN_HEIGHT_BUTTON,
-    ONELINE_MAX_HEIGHT_PLAY_BUTTON
+    ONELINE_MAX_HEIGHT_PLAY_BUTTON,
+    FIXED_TEXT_WIDTH_BUTTON
 } from '../components/Constants.js';
 import CustomButton from '../components/CustomButton.js';
 import Card from '../components/Card.js';
@@ -46,6 +47,8 @@ export const Play = ({ navigation }) => {
                     displayIcon={true}
                     maxHeight={ONELINE_MAX_HEIGHT_PLAY_BUTTON}
                     disabled={lengthOfCardLeft === 0}
+                    isAllCap={true}
+                    fixedTextWidth={FIXED_TEXT_WIDTH_BUTTON}
                     warningText={
                         lengthOfCardLeft <= 3
                             ? `${lengthOfCardLeft} ${
