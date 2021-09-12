@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
+import { CATEGORY } from './Constants.js';
 
 const TextboxContainer = styled.View`
     background-color: ${props =>
@@ -102,11 +103,10 @@ const CardContainer = styled.View`
     background-color: ${props =>
         props.theme.colors[props.color] || props.theme.colors.error};
     border-radius: 20px;
-    margin-top: 10px;
     margin-horizontal: 20px;
     justify-content: ${props => (props.length > 1 ? 'space-around' : 'center')};
-    padding: 40px 50px;
-    min-height: ${props => (props.isScroll ? '500px' : '70%')};
+    padding: 0 30px;
+    height: 100%;
 `; // margin-bottom is added by ButtonContainer
 
 const ParentTipContainer = styled.View`
@@ -154,15 +154,73 @@ export const SmallerStandardTextbox = ({ text, color }) => (
     </SmallerTextboxContainer>
 );
 
+const Icon = styled.Image`
+    width: 130px;
+    height: 130px;
+    align-self: center;
+`;
+
+const pickIconToDisplay = (categoryName) => {
+    switch (categoryName) {
+        case CATEGORY.FAVORITES:
+            return (
+                <Icon
+                    source={require('../assets/genconnect_icon-favorites_filled.png')}
+                />
+            );
+
+        case CATEGORY.DANCECHALLENGE:
+            return (
+                <Icon
+                    source={require('../assets/genconnect_icon-allaboutme_filled.png')}
+                />
+            );
+
+        case CATEGORY.ALLABOUTME:
+            return (
+                <Icon
+                    source={require('../assets/genconnect_icon-allaboutme_filled.png')}
+                />
+            );
+
+        case CATEGORY.INNERME:
+            return (
+                <Icon
+                    source={require('../assets/genconnect_icon-innerme_filled.png')}
+                />
+            );
+
+        case CATEGORY.WHATWOULDYOURDO:
+            return (
+                <Icon
+                    source={require('../assets/genconnect_icon-whatwouldyoudo_filled.png')}
+                />
+            );
+
+        case CATEGORY.BRIGHTFUTURE:
+            return (
+                <Icon
+                    source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
+                />
+            );
+
+        default:
+            return <Icon
+                source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
+            />;
+    }
+};
+
 export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
-        <StandardText color={color} key={index}>
-            {text.toString().toLowerCase()}
+        <StandardText color={color} key={index} style={{ fontWeight: "900", fontSize: 30, lineHeight: 49.18 }}>
+            {text.toString().toUpperCase()}
         </StandardText>
     ));
 
     return (
-        <CardContainer length={textList.length} color={color} isScroll={true}>
+        <CardContainer length={textList.length} color={color} isScroll={true} >
+            {pickIconToDisplay(color)}
             {displayText}
         </CardContainer>
     );

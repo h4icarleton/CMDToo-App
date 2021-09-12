@@ -48,9 +48,8 @@ export const Play = ({ navigation }) => {
                     disabled={lengthOfCardLeft === 0}
                     warningText={
                         lengthOfCardLeft <= 3
-                            ? `${lengthOfCardLeft} ${
-                                  lengthOfCardLeft === 1 ? 'card' : 'cards'
-                              } left`
+                            ? `${lengthOfCardLeft} ${lengthOfCardLeft === 1 ? 'card' : 'cards'
+                            } left`
                             : undefined
                     }
                     onPress={() => {
@@ -62,7 +61,7 @@ export const Play = ({ navigation }) => {
                                 category={ques.Category}
                                 question={ques}
                                 color={ques.Category.toLowerCase()}
-                                hasFollowUp={ques.hasFollowUp}
+                                hasFollowUp={ques["Follow Up"] !== "" ? true : false}
                                 setModalVisible={setModalVisible}
                                 setOptions={setOptions}
                             ></Card>

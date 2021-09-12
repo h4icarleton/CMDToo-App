@@ -105,11 +105,11 @@ const SearchBarComponent = ({ navigation }) => {
                 }
                 q.Group.split('|').map(
                     g =>
-                        (cat_options[g] = {
-                            text: g,
-                            isGroup: true,
-                            isQ: false
-                        })
+                    (cat_options[g] = {
+                        text: g,
+                        isGroup: true,
+                        isQ: false
+                    })
                 );
             });
             cat_options = Object.values(cat_options);
@@ -175,12 +175,12 @@ const SearchBarComponent = ({ navigation }) => {
                     if (output.length > 0) {
                         output[0].isQ
                             ? navigation.navigate('Parent Guide Information', {
-                                  question: output[0].question
-                              })
+                                question: output[0].question
+                            })
                             : navigation.navigate('Parent Guide by Category', {
-                                  filter: output[0].text,
-                                  isGroup: output[0].isGroup
-                              });
+                                filter: output[0].text,
+                                isGroup: output[0].isGroup
+                            });
                     }
                 }}
                 clearButtonMode="while-editing"
@@ -195,18 +195,18 @@ const SearchBarComponent = ({ navigation }) => {
                         onPress={() =>
                             item.isQ
                                 ? navigation.navigate(
-                                      'Parent Guide Information',
-                                      {
-                                          question: item.question
-                                      }
-                                  )
+                                    'Parent Guide Information',
+                                    {
+                                        question: item.question
+                                    }
+                                )
                                 : navigation.navigate(
-                                      'Parent Guide by Category',
-                                      {
-                                          filter: item.text,
-                                          isGroup: item.isGroup
-                                      }
-                                  )
+                                    'Parent Guide by Category',
+                                    {
+                                        filter: item.text,
+                                        isGroup: item.isGroup
+                                    }
+                                )
                         }
                     >
                         <MatchBorder>
@@ -279,8 +279,8 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
     const questions = qs.filter(data => {
         return isGroup
             ? data.Group.toLowerCase()
-                  .split('|')
-                  .includes(cat_filter.toLowerCase())
+                .split('|')
+                .includes(cat_filter.toLowerCase())
             : data.Category.toLowerCase() === cat_filter.toLowerCase();
     });
 
