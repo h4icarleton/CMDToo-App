@@ -415,7 +415,7 @@ export const ParentGuideInformation = ({ route, navigation }) => {
                         color={color}
                     ></InterpretationTextbox>
                     <CustomButton
-                        text="done"
+                        text="DONE"
                         color={color}
                         minHeight={BIG_MIN_HEIGHT_BUTTON}
                         onPress={() => navigation.pop()}
