@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { CardTextbox } from './CustomTextbox.js';
 import CustomButton from './CustomButton.js';
-import { BIG_MIN_HEIGHT_BUTTON, SMALL_HORIZONTAL_MARGIN_BUTTON } from './Constants.js';
+import {
+    SMALL_HORIZONTAL_MARGIN_BUTTON,
+    DONE_HORIZONTAL_MARGIN_BUTTON
+} from './Constants.js';
 import styled from 'styled-components/native';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { Roboto } from '@expo-google-fonts/inter';
 
 const CardTitleTextboxContainer = styled.View`
@@ -30,7 +33,9 @@ const CardTitleText = styled.Text`
 
 const CardTitle = ({ text, color }) => (
     <CardTitleTextboxContainer color={color}>
-        <CardTitleText color={color} style={{ fontFamily: Roboto }}>{text}</CardTitleText>
+        <CardTitleText color={color} style={{ fontFamily: Roboto }}>
+            {text}
+        </CardTitleText>
     </CardTitleTextboxContainer>
 );
 
@@ -62,7 +67,11 @@ const Card = ({
     const [followUp] = useState(
         <Card
             category={category}
-            question={question['Follow Up'] ? question['Follow Up'].split('|') : question['Follow Up']}
+            question={
+                question['Follow Up']
+                    ? question['Follow Up'].split('|')
+                    : question['Follow Up']
+            }
             color={color}
             hasFollowUp={false}
             setModalVisible={setModalVisible}
@@ -87,9 +96,11 @@ const Card = ({
                                 text="DONE"
                                 color={color}
                                 onPress={() => setModalVisible(false)}
-                                horizontalMargin={SMALL_HORIZONTAL_MARGIN_BUTTON}
-                                height='100%'
-                                marginVertical='0'
+                                horizontalMargin={
+                                    SMALL_HORIZONTAL_MARGIN_BUTTON
+                                }
+                                height="100%"
+                                marginVertical="0"
                                 fontWeight="500"
                                 fontSize={28}
                             ></CustomButton>
@@ -97,9 +108,11 @@ const Card = ({
                                 text="FOLLOW UP"
                                 color={color}
                                 onPress={() => setOptions(followUp)}
-                                horizontalMargin={SMALL_HORIZONTAL_MARGIN_BUTTON}
-                                height='100%'
-                                marginVertical='0'
+                                horizontalMargin={
+                                    SMALL_HORIZONTAL_MARGIN_BUTTON
+                                }
+                                height="100%"
+                                marginVertical="0"
                                 fontWeight="500"
                                 fontSize={28}
                             ></CustomButton>
@@ -109,18 +122,18 @@ const Card = ({
                             text="DONE"
                             color={color}
                             onPress={() => setModalVisible(false)}
-                            horizontalMargin='20px'
-                            fontWeight='500'
+                            horizontalMargin={DONE_HORIZONTAL_MARGIN_BUTTON}
+                            fontWeight="500"
                             fontSize={28}
                             lineHeight={38.25}
-                            height='100%'
-                            marginVertical='0'
+                            height="100%"
+                            marginVertical="0"
                         ></CustomButton>
                     )}
                 </View>
                 <View style={{ height: '1.5%' }}></View>
             </View>
-        </CardView >
+        </CardView>
     );
 };
 

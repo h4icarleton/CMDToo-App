@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { StandardText } from './CustomTextbox.js';
-import { CATEGORY } from './Constants.js';
+import { CATEGORY, ICONTYPE } from './Constants.js';
 import { pickIconToDisplay } from './Icon.js';
 
 const ButtonContainer = styled.TouchableOpacity`
     align-self: stretch;
     justify-content: center;
     border-radius: 20px;
-    ${props => (props.marginVertical ? `margin-vertical: ${props.marginVertical}};` : 'margin-vertical: 10px;')};
+    ${props =>
+        props.marginVertical
+            ? `margin-vertical: ${props.marginVertical}};`
+            : 'margin-vertical: 10px;'};
     flex-grow: 100;
 
     background-color: ${props =>
@@ -65,12 +68,22 @@ const CustomButton = ({
             horizontalMargin={horizontalMargin}
             marginVertical={marginVertical}
         >
-            <StandardText color={color} style={{ fontWeight: fontWeight ? fontWeight : "900", fontSize: fontSize ? fontSize : 23, lineHeight: lineHeight ? lineHeight : 41 }}>{text}</StandardText>
+            <StandardText
+                color={color}
+                style={{
+                    fontWeight: fontWeight ? fontWeight : '900',
+                    fontSize: fontSize ? fontSize : 23,
+                    lineHeight: lineHeight ? lineHeight : 41
+                }}
+            >
+                {text}
+            </StandardText>
 
             {warningText && (
                 <WarningText categoryName={color}>{warningText}</WarningText>
             )}
-            {displayIcon && pickIconToDisplay(color, others.disabled, true)}
+            {displayIcon &&
+                pickIconToDisplay(color, ICONTYPE.PLAYPAGE, others.disabled)}
         </ButtonContainer>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { pickIconToDisplay } from './Icon';
-import { CATEGORY } from './Constants.js';
+import { ICONTYPE } from './Constants.js';
 
 const TextboxContainer = styled.View`
     background-color: ${props =>
@@ -106,65 +106,6 @@ export const QuestionTextbox = ({ text, color }) => (
     </TextboxContainer>
 );
 
-const Icon = styled.Image`
-    width: 130px;
-    height: 130px;
-    align-self: center;
-`;
-
-const pickIconToDisplay = categoryName => {
-    switch (categoryName) {
-        case CATEGORY.FAVORITES:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-favorites_filled.png')}
-                />
-            );
-
-        case CATEGORY.DANCECHALLENGE:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-allaboutme_filled.png')}
-                />
-            );
-
-        case CATEGORY.ALLABOUTME:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-allaboutme_filled.png')}
-                />
-            );
-
-        case CATEGORY.INNERME:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-innerme_filled.png')}
-                />
-            );
-
-        case CATEGORY.WHATWOULDYOURDO:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-whatwouldyoudo_filled.png')}
-                />
-            );
-
-        case CATEGORY.BRIGHTFUTURE:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
-                />
-            );
-
-        default:
-            return (
-                <Icon
-                    source={require('../assets/genconnect_icon-brightfuture_pink_outline.png')}
-                />
-            );
-    }
-};
-
 export const CardTextbox = ({ textList, color }) => {
     const displayText = textList.map((text, index) => (
         <StandardText
@@ -178,7 +119,7 @@ export const CardTextbox = ({ textList, color }) => {
 
     return (
         <CardContainer length={textList.length} color={color} isScroll={true}>
-            {pickIconToDisplay(color)}
+            {pickIconToDisplay(color, ICONTYPE.CARDPAGE)}
             {displayText}
         </CardContainer>
     );
@@ -253,7 +194,7 @@ export const InterpretationTextbox = ({
             isScroll={isScroll}
         >
             {displayText}
-            {pickIconToDisplay(color, false, false)}
+            {pickIconToDisplay(color, ICONTYPE.PARENTGUIDEPAGE, false)}
         </ParentGuideContainer>
     );
 };
