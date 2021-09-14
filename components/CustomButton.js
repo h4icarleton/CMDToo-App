@@ -8,7 +8,7 @@ const ButtonContainer = styled.TouchableOpacity`
     align-self: stretch;
     justify-content: center;
     border-radius: 20px;
-    margin-vertical: 10px;
+    ${props => (props.marginVertical ? `margin-vertical: ${props.marginVertical}};` : 'margin-vertical: 10px;')};
     flex-grow: 100;
 
     background-color: ${props =>
@@ -23,6 +23,7 @@ const ButtonContainer = styled.TouchableOpacity`
             : 'padding: 10px 20px;'};
 
     ${props => (props.minHeight ? `min-height: ${props.minHeight}};` : '')};
+    ${props => (props.height ? `height: ${props.height}};` : '')};
 `;
 
 const WarningText = styled.Text`
@@ -46,6 +47,11 @@ const CustomButton = ({
     onPress,
     displayIcon,
     horizontalMargin,
+    fontWeight,
+    fontSize,
+    lineHeight,
+    height,
+    marginVertical,
     ...others
 }) => {
     return (
@@ -54,10 +60,12 @@ const CustomButton = ({
             onPress={onPress}
             disabled={others.disabled}
             maxHeight={maxHeight}
+            height={height}
             minHeight={minHeight}
             horizontalMargin={horizontalMargin}
+            marginVertical={marginVertical}
         >
-            <StandardText color={color}>{text}</StandardText>
+            <StandardText color={color} style={{ fontWeight: fontWeight ? fontWeight : "900", fontSize: fontSize ? fontSize : 23, lineHeight: lineHeight ? lineHeight : 41 }}>{text}</StandardText>
 
             {warningText && (
                 <WarningText categoryName={color}>{warningText}</WarningText>
