@@ -63,11 +63,11 @@ export const AppDesc = styled.Text`
 `;
 
 export const CategoryHeader = styled.Text`
-    font-size: 35px;
+    font-size: 24px;
     min-height: 50px;
     align-items: flex-start;
     font-family: Avenir;
-    font-weight: 600;
+    font-weight: 900;
 `;
 
 export const ParentTipsHeaderContainer = styled.View`

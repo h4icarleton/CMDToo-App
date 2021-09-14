@@ -43,7 +43,7 @@ export const HowToPlay = ({ navigation }) => {
                     <CustomButton
                         text="play"
                         color="CMDGreen"
-                        onPress={() => navigation.navigate('play')}
+                        onPress={() => navigation.navigate('Play')}
                         minHeight={BIG_MIN_HEIGHT_BUTTON}
                     />
                     <StatusBar style="auto" />
