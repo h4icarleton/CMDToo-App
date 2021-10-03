@@ -100,7 +100,11 @@ export const Play = ({ navigation }) => {
                         <HomeButton
                             text="SURVEY"
                             source={require('../assets/genconnect_ombre_allaboutme.png')}
-                            onPress={() => navigation.navigate('Home')}
+                            onPress={() =>
+                                Linking.openURL(
+                                    'https://docs.google.com/forms/d/e/1FAIpQLSe47cA8qTGibaL4EuBOfr6OkY3gEva0FyHIEgqSZ1j-y0EWkg/viewform?usp=sf_link'
+                                )
+                            }
                         />
                         <HomeButton
                             text="PARENT GUIDE"

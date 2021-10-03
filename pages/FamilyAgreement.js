@@ -7,51 +7,46 @@ import GeometryBackground from '../components/GeometryBackground';
 import {
     StyledView,
     ScrollStyledView,
-    HowToPlayContainer
+    HowToPlayContainer,
+    CategoryHeader
 } from '../components/StyledView';
 import { BIG_MIN_HEIGHT_BUTTON } from '../components/Constants.js';
 
-export const HowToPlay = ({ navigation }) => {
+export const FamilyAgreement = ({ navigation }) => {
     return (
         <StyledView>
             <GeometryBackground />
             <ScrollStyledView>
                 <HowToPlayContainer>
                     <CustomText
-                        text='Press "PLAY"'
+                        text='Meet on a human level'
                         color="CMDGreen"
                         count="1"
                     />
                     <CustomText
-                        text="Pick an order of players"
+                        text="Respect each other's individuality"
                         color="CMDPink"
                         count="2"
                     />
                     <CustomText
-                        text="Pick a category"
-                        color="CMDPurple"
+                        text="Don't take anything personal"
+                        color="CMDTurquoise"
                         count="3"
                     />
                     <CustomText
-                        text="Answer the question"
-                        color="CMDTurquoise"
+                        text="Learn about your friends and family"
+                        color="CMDOrange"
                         count="4"
                     />
                     <CustomText
-                        text="Pass the phone to the next person"
-                        color="CMDOrange"
+                        text="Have FUN!!"
+                        color="CMDPurple"
                         count="5"
                     />
                     <CustomButton
-                        text="Play"
+                        text="Go Back"
                         color="CMDGreen"
-                        onPress={() => navigation.navigate('Play')}
-                        minHeight={BIG_MIN_HEIGHT_BUTTON}
-                    />
-                    <CustomButton
-                        text="Family Agreement"
-                        color="CMDPink"
-                        onPress={() => navigation.navigate('Family Agreement')}
+                        onPress={() => navigation.navigate('How To Play')}
                         minHeight={BIG_MIN_HEIGHT_BUTTON}
                     />
                     <StatusBar style="auto" />

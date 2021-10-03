@@ -12,7 +12,6 @@ export const StyledHomeButtonView = styled.View`
     justify-content: center;
 `;
 export const StyledLogo = styled.View`
-    background-color: #fff;
     align-items: center;
     justify-content: flex-end;
     margin-top: 30%;
@@ -22,6 +21,18 @@ export const ScrollStyledView = styled.ScrollView`
     margin-top: 3px;
     margin-bottom: 15px;
     width: 100%;
+`;
+
+export const Curvytext = styled.Text`
+    background-color: #333;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 40px;
+;`
+
+export const CurvyTextPath = styled.Text`
+    path {
+        fill: transparent;
+        }
 `;
 
 export const BigScrollStyledView = styled.ScrollView`
@@ -70,6 +81,7 @@ export const CategoryHeader = styled.Text`
     align-items: flex-start;
     font-family: Avenir;
     font-weight: 900;
+    text-align: center;
 `;
 
 export const ParentTipsHeaderContainer = styled.View`

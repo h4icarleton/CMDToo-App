@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         top: 85,
         color: '#EE3282',
         position: 'absolute'
-    }
+    },
 });
 
 const HomeButton = props => {

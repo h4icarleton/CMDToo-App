@@ -13,7 +13,7 @@ const TextboxContainer = styled.View`
     min-width: 90%;
 `;
 
-const SmallerTextboxContainer = styled.View`
+export const SmallerTextboxContainer = styled.View`
     background-color: ${props =>
         props.theme.colors[props.color] || props.theme.colors.error};
     border-radius: 20px;
@@ -28,7 +28,7 @@ export const SmallerStandardText = styled.Text`
     font-style: normal;
     font-weight: 600;
 
-    font-size: 23px;
+    font-size: 20px;
     line-height: 32px;
     text-align: center;
     flex-shrink: 1;

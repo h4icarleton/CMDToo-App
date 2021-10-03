@@ -6,7 +6,7 @@ import React from 'react';
 import HomeButton from './components/HomeButton.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
-import { Image, TouchableOpacity, View, Text, ScrollView } from 'react-native';
+import { Image, TouchableOpacity, View, Text, ScrollView, StyleSheet } from 'react-native';
 import {
     ParentGuide,
     ParentGuideByCategory,
@@ -17,11 +17,18 @@ import {
     StyledView,
     StyledHomeButtonView,
     StyledLogo,
-    StyledTagline
+    CustomButton
 } from './components/StyledView';
 import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
+import { FamilyAgreement } from './pages/FamilyAgreement.js';
 import GeometryBackground from './components/GeometryBackground.js';
+import { Text as SvgText, TextPath, Svg, Path }
+    from 'react-native-svg';
+import { BIG_MIN_HEIGHT_BUTTON } from './components/Constants.js';
+
+
+
 
 const HomeScreen = ({ navigation }) => {
     return (
@@ -39,10 +46,24 @@ const HomeScreen = ({ navigation }) => {
                             marginRight: 10
                         }}
                     />
-                    <StyledTagline>
-                        The game that gets families talking!{' '}
-                    </StyledTagline>
                 </StyledLogo>
+                <Svg height="200px" width="100%">
+                    <Path
+                        d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145"
+                        id='curve'
+                    />
+                    <SvgText fill="#EE3282"
+                        stroke="none"
+                        fontSize="20"
+                        fontWeight="900"
+                        fontFamily="Avenir"
+                        x="35"
+                    >
+                        <TextPath href="#curve">
+                            THE GAME THAT GETS FAMILIES TALKING!
+                            </TextPath>
+                    </SvgText>
+                </Svg>
 
                 <StyledHomeButtonView>
                     <HomeButton
@@ -149,6 +170,37 @@ export default function App() {
                     <Stack.Screen
                         name="How To Play"
                         component={HowToPlay}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'rgba(70, 193, 193, 0.6)'
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon.png')}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
+                    />
+                    <Stack.Screen
+                        name="Family Agreement"
+                        component={FamilyAgreement}
                         options={({ navigation }) => ({
                             headerShown: true,
                             headerStyle: {
