@@ -22,7 +22,7 @@ const CardTitleTextboxContainer = styled.View`
 const CardTitleText = styled.Text`
     font-style: normal;
     font-family: Avenir;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 30px;
     line-height: 35.16px;
     text-align: center;

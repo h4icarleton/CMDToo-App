@@ -149,4 +149,6 @@ export const StyledTagline = styled.Text`
     font-weight: 800;
     font-family: Avenir;
     font-size: 18px;
+    text-align: center;
+    color: #EE3282;
 `;

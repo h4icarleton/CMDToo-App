@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-
 import { View, Image, StyleSheet, TouchableOpacity, Text } from 'react-native';
+
 const styles = StyleSheet.create({
     styledImage: {
         minWidth: 165,

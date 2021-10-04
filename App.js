@@ -2,11 +2,11 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import HomeButton from './components/HomeButton.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
-import { Image, TouchableOpacity, View, Text, ScrollView, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import {
     ParentGuide,
     ParentGuideByCategory,
@@ -17,81 +17,85 @@ import {
     StyledView,
     StyledHomeButtonView,
     StyledLogo,
-    CustomButton
+    StyledTagline
 } from './components/StyledView';
 import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
 import { FamilyAgreement } from './pages/FamilyAgreement.js';
 import GeometryBackground from './components/GeometryBackground.js';
-import { Text as SvgText, TextPath, Svg, Path }
-    from 'react-native-svg';
 import { BIG_MIN_HEIGHT_BUTTON } from './components/Constants.js';
+import AppLoading from 'expo-app-loading';
+import { Asset } from 'expo-asset';
 
 
+async function _cacheResourcesAsync() {
+    const images = [require('./assets/genconnect_logo-black.png'), require('./assets/genconnect_ombre_allaboutme.png'), require('./assets/genconnect_ombre_brightfuture.png'), require('./assets/genconnect_ombre_whatwouldyoudo.png'), require('./assets/genconnect_ombre_dancechallenge.png')];
 
+    const cacheImages = images.map(image => {
+        return Asset.fromModule(image).downloadAsync();
+    });
+    return Promise.all(cacheImages);
+};
 
 const HomeScreen = ({ navigation }) => {
-    return (
-        <StyledView>
-            <GeometryBackground />
-            <ScrollView>
+    const [isReady, setIsReady] = useState(false);
 
-                <StyledLogo>
-                    <Image
-                        source={require('./assets/genconnect_logo-black.png')}
-                        style={{
-                            width: 350,
-                            height: 130,
-                            marginLeft: 10,
-                            marginRight: 10
-                        }}
-                    />
-                </StyledLogo>
-                <Svg height="200px" width="100%">
-                    <Path
-                        d="M6,150C49.63,93,105.79,36.65,156.2,47.55,207.89,58.74,213,131.91,264,150c40.67,14.43,108.57-6.91,229-145"
-                        id='curve'
-                    />
-                    <SvgText fill="#EE3282"
-                        stroke="none"
-                        fontSize="20"
-                        fontWeight="900"
-                        fontFamily="Avenir"
-                        x="35"
-                    >
-                        <TextPath href="#curve">
-                            THE GAME THAT GETS FAMILIES TALKING!
-                            </TextPath>
-                    </SvgText>
-                </Svg>
+    if (!isReady) {
+        return (
+            <AppLoading
+                startAsync={_cacheResourcesAsync}
+                onFinish={() => setIsReady({ isReady: true })}
+                onError={console.warn}
+            />
+        );
+    } else {
+        return (
+            <StyledView>
+                <GeometryBackground />
+                <ScrollView>
 
-                <StyledHomeButtonView>
-                    <HomeButton
-                        text="PLAY GAME"
-                        onPress={() => navigation.navigate('Play')}
-                        source={require('./assets/genconnect_ombre_allaboutme.png')}
-                    />
-                    <HomeButton
-                        text="HOW TO PLAY"
-                        onPress={() => navigation.navigate('How To Play')}
-                        source={require('./assets/genconnect_ombre_brightfuture.png')}
-                    />
-                    <HomeButton
-                        text="PARENT GUIDE"
-                        onPress={() => navigation.navigate('Parent Guide')}
-                        source={require('./assets/genconnect_ombre_whatwouldyoudo.png')}
-                    />
-                    <HomeButton
-                        text="PARENT TIPS"
-                        onPress={() => navigation.navigate('Parent Tips')}
-                        source={require('./assets/genconnect_ombre_dancechallenge.png')}
-                    />
-                </StyledHomeButtonView>
-                <StatusBar style="auto" />
-            </ScrollView>
-        </StyledView >
-    );
-};
+                    <StyledLogo>
+                        <Image
+                            source={require('./assets/genconnect_logo-black.png')}
+                            style={{
+                                width: 350,
+                                height: 130,
+                                marginLeft: 10,
+                                marginRight: 10
+                            }}
+                        />
+                    </StyledLogo>
+                    <StyledTagline>The game that gets families talking!</StyledTagline>
+
+                    <StyledHomeButtonView>
+                        <HomeButton
+                            text="PLAY GAME"
+                            onPress={() => navigation.navigate('Play')}
+                            source={require('./assets/genconnect_ombre_allaboutme.png')}
+                        />
+                        <HomeButton
+                            text="HOW TO PLAY"
+                            onPress={() => navigation.navigate('How To Play')}
+                            source={require('./assets/genconnect_ombre_brightfuture.png')}
+                        />
+                        <HomeButton
+                            text="PARENT GUIDE"
+                            onPress={() => navigation.navigate('Parent Guide')}
+                            source={require('./assets/genconnect_ombre_whatwouldyoudo.png')}
+                        />
+                        <HomeButton
+                            text="PARENT TIPS"
+                            onPress={() => navigation.navigate('Parent Tips')}
+                            source={require('./assets/genconnect_ombre_dancechallenge.png')}
+                        />
+                    </StyledHomeButtonView>
+                    <StatusBar style="auto" />
+                </ScrollView>
+            </StyledView>
+        );
+    };
+
+}
 
 const Stack = createStackNavigator();
 export default function App() {
