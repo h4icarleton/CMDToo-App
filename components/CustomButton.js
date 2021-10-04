@@ -94,54 +94,5 @@ const CustomButton = ({
     );
 };
 
-const CustomButton2 = ({
-    text,
-    color,
-    warningText,
-    minHeight,
-    maxHeight,
-    onPress,
-    displayIcon,
-    horizontalMargin,
-    isAllCap,
-    fixedTextWidth,
-    fontWeight,
-    fontSize,
-    lineHeight,
-    height,
-    marginVertical,
-    ...others
-}) => {
-    return (
-        <ButtonContainer
-            color={others.disabled ? 'grey' : color}
-            onPress={onPress}
-            disabled={others.disabled}
-            maxHeight={maxHeight}
-            height={height}
-            minHeight={minHeight}
-            horizontalMargin={horizontalMargin}
-            marginVertical={marginVertical}
-        >
-            <StandardTextContainer>
-                <SmallerStandardText
-                    color={color}
-                    isDisable={others.disabled}
-                    fixedTextWidth={fixedTextWidth}
-                >
-                    {isAllCap ? text.toUpperCase() : text}
-                </SmallerStandardText>
-            </StandardTextContainer>
-            {warningText && (
-                <WarningText isDisable={others.disabled} categoryName={color}>
-                    {warningText}
-                </WarningText>
-            )}
-            {displayIcon &&
-                pickIconToDisplay(color, ICONTYPE.PLAYPAGE, others.disabled)}
-        </ButtonContainer>
-    );
-};
-
 
 export default CustomButton;
