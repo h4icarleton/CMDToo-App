@@ -53,7 +53,6 @@ const HomeScreen = ({ navigation }) => {
             <StyledView>
                 <GeometryBackground />
                 <ScrollView>
-
                     <StyledLogo>
                         <Image
                             source={require('./assets/genconnect_logo-black.png')}
