@@ -10,6 +10,7 @@ export const StyledHomeButtonView = styled.View`
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 500px;
 `;
 export const StyledLogo = styled.View`
     align-items: center;
@@ -25,12 +26,12 @@ export const Curvytext = styled.Text`
     background-color: #333;
     font-family: 'Luckiest Guy', cursive;
     font-size: 40px;
-;`
+`;
 
 export const CurvyTextPath = styled.Text`
     path {
         fill: transparent;
-        }
+    }
 `;
 
 export const BigScrollStyledView = styled.ScrollView`
@@ -149,5 +150,5 @@ export const StyledTagline = styled.Text`
     font-family: Avenir;
     font-size: 18px;
     text-align: center;
-    color: #EE3282;
+    color: #ee3282;
 `;
