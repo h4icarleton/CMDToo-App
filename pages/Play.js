@@ -19,7 +19,6 @@ import GeometryBackground from '../components/GeometryBackground';
 
 export const Play = ({ route, navigation }) => {
     const { categories, qs } = route.params;
-    console.log(qs);
     const [modalVisible, setModalVisible] = useState(false);
     let list = [];
     const [questions, setQuestions] = useState(qs);

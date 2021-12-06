@@ -23,7 +23,6 @@ export const SelectQuestionSet = ({ route, navigation }) => {
             source={backgrounds[index % 4]}
         />
     );
-    console.log(QuestionSets);
     return (
         <StyledView>
             <GeometryBackground />

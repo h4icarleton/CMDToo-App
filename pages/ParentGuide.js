@@ -283,8 +283,6 @@ const QuestionButtonDisplay = buttonObjects => {
 export const ParentGuideByCategory = ({ route, navigation }) => {
     const cat_filter = route.params.filter;
     const isGroup = route.params.isGroup;
-    console.log("Params");
-    console.log(route.params);
     const qs = route.params.qs;
     const buttonComponents = [];
 
