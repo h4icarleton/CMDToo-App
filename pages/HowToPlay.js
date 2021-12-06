@@ -45,7 +45,7 @@ export const HowToPlay = ({ navigation }) => {
                     <CustomButton
                         text="Play"
                         color="CMDGreen"
-                        onPress={() => navigation.navigate('Play')}
+                        onPress={() => navigation.navigate('SelectQuestionSet', { destination: 'Play' })}
                         minHeight={BIG_MIN_HEIGHT_BUTTON}
                     />
                     <CustomButton

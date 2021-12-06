@@ -8,27 +8,19 @@ import {
 import CustomButton from '../components/CustomButton.js';
 import Card from '../components/Card.js';
 import HomeButton from '../components/HomeButton.js';
-import qs from '../components/questions.json';
 import { Modal, Linking, View, Image } from 'react-native';
 import {
     StyledView,
     AppDesc,
-    CategoryHeader,
     YouFinished,
     StyledHomeButtonView
 } from '../components/StyledView';
 import GeometryBackground from '../components/GeometryBackground';
 
-export const Play = ({ navigation }) => {
+export const Play = ({ route, navigation }) => {
+    const { categories, qs } = route.params;
+    console.log(qs);
     const [modalVisible, setModalVisible] = useState(false);
-    let categories = [
-        'favorites',
-        'dance challenge',
-        'all about me',
-        'the inner me',
-        'what would you do?',
-        'my bright future'
-    ];
     let list = [];
     const [questions, setQuestions] = useState(qs);
     const [options, setOptions] = useState([]);

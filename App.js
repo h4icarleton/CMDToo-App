@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import HomeButton from './components/HomeButton.js';
 import { ThemeProvider } from 'styled-components';
 import COLORS from './components/GlobalStyles.js';
-import { TouchableOpacity, View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
 import {
     ParentGuide,
     ParentGuideByCategory,
@@ -20,10 +20,10 @@ import {
     StyledTagline
 } from './components/StyledView';
 import { Play } from './pages/Play.js';
+import { SelectQuestionSet } from './pages/SelectQuestionSet.js';
 import { HowToPlay } from './pages/HowToPlay.js';
 import { FamilyAgreement } from './pages/FamilyAgreement.js';
 import GeometryBackground from './components/GeometryBackground.js';
-import { BIG_MIN_HEIGHT_BUTTON, FIXED_TEXT_WIDTH_BUTTON } from './components/Constants.js';
 import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import { Footer as Information } from './pages/Footer.js';
@@ -70,7 +70,7 @@ const HomeScreen = ({ navigation }) => {
                 <StyledHomeButtonView>
                     <HomeButton
                         text="PLAY GAME"
-                        onPress={() => navigation.navigate('Play')}
+                        onPress={() => navigation.navigate('SelectQuestionSet', { destination: 'Play' })}
                         source={require('./assets/genconnect_ombre_allaboutme.png')}
                     />
                     <HomeButton
@@ -80,7 +80,7 @@ const HomeScreen = ({ navigation }) => {
                     />
                     <HomeButton
                         text="PARENT GUIDE"
-                        onPress={() => navigation.navigate('Parent Guide')}
+                        onPress={() => navigation.navigate('SelectQuestionSet', { destination: 'Parent Guide' })}
                         source={require('./assets/genconnect_ombre_whatwouldyoudo.png')}
                     />
                     <HomeButton
@@ -155,6 +155,36 @@ export default function App() {
                             )
                         })}
                     />
+                    <Stack.Screen
+                        name="SelectQuestionSet"
+                        component={SelectQuestionSet}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'rgba(70, 193, 193, 0.6)'
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon.png')}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })} />
                     <Stack.Screen
                         name="Play"
                         component={Play}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import qs from '../components/questions.json';
 import CustomButton from '../components/CustomButton.js';
 import styled from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
@@ -77,7 +76,7 @@ const InformationContainer = styled.View`
     margin-bottom: 50px;
 `;
 
-const SearchBarComponent = ({ navigation }) => {
+const SearchBarComponent = (qs, { navigation }) => {
     const [input, setInput] = useState('');
     useEffect(() => {
         setOutput(find(input));
@@ -110,11 +109,11 @@ const SearchBarComponent = ({ navigation }) => {
                 }
                 q.Group.split('|').map(
                     g =>
-                        (cat_options[g] = {
-                            text: g,
-                            isGroup: true,
-                            isQ: false
-                        })
+                    (cat_options[g] = {
+                        text: g,
+                        isGroup: true,
+                        isQ: false
+                    })
                 );
             });
             cat_options = Object.values(cat_options);
@@ -183,6 +182,7 @@ const SearchBarComponent = ({ navigation }) => {
                                 question: output[0].question
                             })
                             : navigation.navigate('Parent Guide by Category', {
+                                "qs": qs,
                                 filter: output[0].text,
                                 isGroup: output[0].isGroup
                             });
@@ -208,6 +208,7 @@ const SearchBarComponent = ({ navigation }) => {
                                 : navigation.navigate(
                                     'Parent Guide by Category',
                                     {
+                                        "qs": qs,
                                         filter: item.text,
                                         isGroup: item.isGroup
                                     }
@@ -224,7 +225,7 @@ const SearchBarComponent = ({ navigation }) => {
     );
 };
 
-const CategoryButtonDisplay = (buttonObjects, isGroup) => {
+const CategoryButtonDisplay = (qs, buttonObjects, isGroup) => {
     let list = [];
     buttonObjects.forEach(buttonObject => {
         list.push(
@@ -243,6 +244,7 @@ const CategoryButtonDisplay = (buttonObjects, isGroup) => {
                     buttonObject.navigation.navigate(
                         buttonObject.onPressDestination,
                         {
+                            qs: qs,
                             filter: buttonObject.text,
                             isGroup: isGroup
                         }
@@ -281,6 +283,9 @@ const QuestionButtonDisplay = buttonObjects => {
 export const ParentGuideByCategory = ({ route, navigation }) => {
     const cat_filter = route.params.filter;
     const isGroup = route.params.isGroup;
+    console.log("Params");
+    console.log(route.params);
+    const qs = route.params.qs;
     const buttonComponents = [];
 
     const questions = qs.filter(data => {
@@ -304,7 +309,7 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
     return (
         <ParentGuideContainer>
             <GeometryBackground />
-            {SearchBarComponent({ navigation })}
+            {SearchBarComponent(qs, { navigation })}
             <ViewBy editable={false} multiline={true}>
                 {' '}
                 {headingText}{' '}
@@ -319,10 +324,9 @@ export const ParentGuideByCategory = ({ route, navigation }) => {
     );
 };
 
-const getGroupInterpretationAndCategory = navigation => {
+const getGroupInterpretationAndCategory = (qs, navigation) => {
     let groupInterpretations = new Set();
     let categories = new Set();
-
     // get unique categories and group interpretations
     qs.forEach(question => {
         categories.add(question.Category);
@@ -357,16 +361,17 @@ const getGroupInterpretationAndCategory = navigation => {
     return [groupInterpretationTopics, categoriesTopics];
 };
 
-export const ParentGuide = ({ navigation }) => {
+export const ParentGuide = ({ route, navigation }) => {
+    const qs = route.params.qs;
     const [isGroup, setIsGroup] = useState(false);
-    const questionTopics = getGroupInterpretationAndCategory(navigation);
+    const questionTopics = getGroupInterpretationAndCategory(qs, navigation);
     const groupInterpretationTopics = questionTopics[0];
     const categories = questionTopics[1];
 
     return (
         <ParentGuideContainer>
             <GeometryBackground />
-            {SearchBarComponent({ navigation })}
+            {SearchBarComponent(qs, { navigation })}
             <ViewHeading> View By: </ViewHeading>
             <StyledPress onPress={() => setIsGroup(!isGroup)}>
                 <View pointerEvents="none">
@@ -381,6 +386,7 @@ export const ParentGuide = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
             >
                 {CategoryButtonDisplay(
+                    qs,
                     isGroup ? groupInterpretationTopics : categories,
                     isGroup
                 )}
