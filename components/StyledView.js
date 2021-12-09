@@ -151,4 +151,6 @@ export const StyledTagline = styled.Text`
     font-size: 18px;
     text-align: center;
     color: #ee3282;
+    padding-top: 10px;
+    padding-bottom: 20px;
 `;

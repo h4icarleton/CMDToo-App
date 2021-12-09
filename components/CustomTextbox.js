@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { pickIconToDisplay } from './Icon';
 import { ICONTYPE } from './Constants.js';
+import COLORS from './GlobalStyles.js';
 
 const TextboxContainer = styled.View`
     background-color: ${props =>
@@ -22,6 +23,48 @@ export const SmallerTextboxContainer = styled.View`
     padding: 20px 40px;
     min-width: 90%;
 `;
+
+export const AboutTextboxContainer = styled.View`
+    background-color: white};
+    border-radius: 20px;
+    margin-horizontal: 10px;
+    justify-content: center;
+    padding: 20px 15px;
+    min-width: 90%;
+    margin-top: 10px;
+`;
+
+export const AboutTextTitle = styled.Text`
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 23px;
+    line-height: 32px;
+    text-align: center;
+    flex-shrink: 1;
+    color: ${COLORS.CMDTurquoise};
+`;
+
+export const AboutText = styled.Text`
+    font-family: Avenir;
+    font-style: normal;
+    font-size: 12px;
+    line-height: 18px;
+    flex-shrink: 1;
+    text-align: center;
+    color: ${COLORS.CMDTurquoise};
+`;
+
+export const AboutTextList = styled.Text`
+    font-family: Avenir;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 18px;
+    flex-shrink: 1;
+    color: ${COLORS.CMDTurquoise};
+`;
+
+
 
 export const SmallerStandardText = styled.Text`
     font-family: Avenir;

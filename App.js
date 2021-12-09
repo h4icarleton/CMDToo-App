@@ -30,9 +30,11 @@ import { Play } from './pages/Play.js';
 import { HowToPlay } from './pages/HowToPlay.js';
 import { FamilyAgreement } from './pages/FamilyAgreement.js';
 import GeometryBackground from './components/GeometryBackground.js';
-import { BIG_MIN_HEIGHT_BUTTON } from './components/Constants.js';
 import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
+import { Footer as Information } from './pages/Footer.js';
+import { About } from './pages/About.js';
+import * as SplashScreen from 'expo-splash-screen';
 
 async function _cacheResourcesAsync() {
     const images = [
@@ -53,6 +55,7 @@ const HomeScreen = ({ navigation }) => {
     const [isReady, setIsReady] = useState(false);
 
     if (!isReady) {
+        SplashScreen.preventAutoHideAsync();
         return (
             <AppLoading
                 startAsync={_cacheResourcesAsync}
@@ -64,7 +67,7 @@ const HomeScreen = ({ navigation }) => {
         return (
             <StyledView>
                 <GeometryBackground />
-                <StyledLogo>
+                <StyledLogo style={{ marginTop: '0%' }}>
                     <Image
                         source={require('./assets/genconnect_logo-black.png')}
                         style={{
@@ -75,9 +78,7 @@ const HomeScreen = ({ navigation }) => {
                         }}
                     />
                 </StyledLogo>
-                <StyledTagline>
-                    The game that gets families talking!
-                </StyledTagline>
+                <StyledTagline>The game that gets families talking!</StyledTagline>
 
                 <StyledHomeButtonView>
                     <HomeButton
@@ -102,6 +103,21 @@ const HomeScreen = ({ navigation }) => {
                     />
                 </StyledHomeButtonView>
                 <StatusBar style="auto" />
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Information')}
+                    style={{
+                        position: 'absolute',
+                        right: 20,
+                        top: 40,
+                    }} >
+                    <Image
+                        source={require('./assets/footer_info.png')}
+                        style={{
+                            width: 50,
+                            height: 50
+                        }}
+                    />
+                </TouchableOpacity>
             </StyledView>
         );
     }
@@ -203,6 +219,76 @@ export default function App() {
                                 >
                                     <Image
                                         source={require('./assets/homeIcon.png')}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
+                    />
+                    <Stack.Screen
+                        name="Information"
+                        component={Information}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'white',
+                            },
+                            headerTintColor: '#46C1C1',
+                            headerTitleStyle: {
+                                fontWeight: 'bold',
+                                color: '#46C1C1'
+                            },
+                            cardStyle: {
+                                backgroundColor: '#46C1C1'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon-inverted.png')}
+                                        style={{
+                                            width: 45,
+                                            height: 35,
+                                            marginRight: 5
+                                        }}
+                                    />
+                                </TouchableOpacity>
+                            )
+                        })}
+                    />
+                    <Stack.Screen
+                        name="About"
+                        component={About}
+                        options={({ navigation }) => ({
+                            headerShown: true,
+                            headerStyle: {
+                                backgroundColor: 'white',
+                            },
+                            headerTintColor: '#46C1C1',
+                            headerTitleStyle: {
+                                fontWeight: 'bold',
+                                color: '#46C1C1'
+                            },
+                            cardStyle: {
+                                backgroundColor: '#46C1C1'
+                            },
+                            headerBackTitleVisible: false,
+                            headerRight: props => (
+                                <TouchableOpacity
+                                    onPress={(...props) => {
+                                        navigation.navigate('Home');
+                                    }}
+                                >
+                                    <Image
+                                        source={require('./assets/homeIcon-inverted.png')}
                                         style={{
                                             width: 45,
                                             height: 35,

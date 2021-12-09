@@ -17,6 +17,7 @@
     "expo-dev-client": "^0.5.1",
     "expo-file-system": "~11.0.2",
     "expo-font": "~9.1.0",
+    "expo-sms": "~9.1.2",
     "expo-splash-screen": "^0.11.4",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
@@ -26,7 +27,9 @@
     "react-native-reanimated": "~2.1.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",
+    "react-native-sms": "^1.11.0",
     "react-native-svg": "^12.1.1",
+    "react-native-unordered-list": "^1.0.4",
     "react-native-web": "~0.13.12",
     "styled-components": "^5.3.0"
   },

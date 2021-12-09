@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
         height: 185,
         margin: 5,
         borderRadius: 15,
-        zIndex: 0,
-        top: 30
+        zIndex: 0
     },
     styledText: {
         zIndex: 1,
@@ -20,10 +19,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 30,
         minWidth: 165,
-        minHeight: 220,
+        minHeight: 20,
         padding: 10,
         left: 5,
-        top: 85,
+        top: 55,
         color: 'white',
         position: 'absolute'
     },
@@ -35,10 +34,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 30,
         minWidth: 165,
-        minHeight: 220,
+        minHeight: 20,
         padding: 10,
         left: 5,
-        top: 85,
+        top: 55,
         color: '#EE3282',
         position: 'absolute'
     },
